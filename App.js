@@ -1,28 +1,28 @@
-import MainScreen from "./src/components/Screens/MainScreens";
+import MainScreen from "./src/Screens/MainScreen";
 const taskList = [
   {
     id: 1,
-    task: "Regar plantas",
+    task: "Zapatos",
     completed: false,
   },
   {
     id: 2,
-    task: "Lavar platos",
+    task: "Camisas",
     completed: false,
   },
   {
     id: 3,
-    task: "Limpiar el baño",
+    task: "Pantalones",
     completed: false,
   },
   {
     id: 4,
-    task: "Ir a comprar carne",
+    task: "Cintos",
     completed: false,
   },
   {
     id: 5,
-    task: "Comprar carbón",
+    task: "Corbatas",
     completed: false,
   },
 ];
