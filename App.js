@@ -1,32 +1,44 @@
-import MainScreen from "./src/Screens/MainScreen";
-const taskList = [
-  {
-    id: 1,
-    task: "Zapatos",
-    completed: false,
-  },
-  {
-    id: 2,
-    task: "Camisas",
-    completed: false,
-  },
-  {
-    id: 3,
-    task: "Pantalones",
-    completed: false,
-  },
-  {
-    id: 4,
-    task: "Cintos",
-    completed: false,
-  },
-  {
-    id: 5,
-    task: "Corbatas",
-    completed: false,
-  },
-];
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import Header from './src/Components/Header';
+import Home from './src/Screens/Home';
+import ItemListCategory from './src/Screens/ItemListCategory';
+import { useFonts } from 'expo-font';
+import { useState } from 'react';
 
 export default function App() {
-  return <MainScreen taskList={taskList} />;
+
+  const [categorySelected, setCategorySelected] = useState("")
+
+  const [fontsLoaded] = useFonts({
+    'Josefin': require('./src/Assets/Fonts/Josefin_Sans/JosefinSans-Regular.ttf')
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+  //Acá se manejará el estado para seleccionar una category y un producto
+  
+  return (
+    <View style = {styles.container}>
+      <Header/>
+      {
+        categorySelected ? 
+        <ItemListCategory 
+          category={categorySelected}
+          setCategory={setCategorySelected}
+        /> :
+        <Home
+          setCategorySelected={setCategorySelected}
+        />
+      }
+      {/* <ItemListCategory/> */}
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+})
