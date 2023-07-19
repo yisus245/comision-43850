@@ -1,17 +1,10 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import Header from "./src/Components/Header";
-import Home from "./src/Screens/Home";
-import ItemListCategory from "./src/Screens/ItemListCategory";
-import { useFonts } from "expo-font";
-import { useState } from "react";
-import Swal from "sweetalert2";
+import { useFonts } from 'expo-font';
+import Navigator from './src/Navigation/Navigator';
 
 export default function App() {
-  const [categorySelected, setCategorySelected] = useState("");
 
   const [fontsLoaded] = useFonts({
-    Josefin: require("./src/Assets/Fonts/Josefin_Sans/JosefinSans-Regular.ttf"),
+    'Josefin': require('./src/Assets/Fonts/Josefin_Sans/JosefinSans-Regular.ttf')
   });
 
   if (!fontsLoaded) {
@@ -20,32 +13,6 @@ export default function App() {
   //Acá se manejará el estado para seleccionar una category y un producto
 
   return (
-    <View style={styles.container}>
-      <Header />
-      {categorySelected ? (
-        (Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Entrando en la lista de Productos",
-          showConfirmButton: false,
-          timer: 1500,
-        }),
-        (
-          <ItemListCategory
-            category={categorySelected}
-            setCategory={setCategorySelected}
-          />
-        ))
-      ) : (
-        <Home setCategorySelected={setCategorySelected} />
-      )}
-      {/* <ItemListCategory/> */}
-    </View>
+    <Navigator/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
